@@ -1,5 +1,5 @@
 
-This application demonstrates use of JWT token for Registration, Login and Authentication purpose.
+This .NET 6 WebAPI application demonstrates use of JWT token for Registration, Login and Authentication purpose.
 
 AuthController.cs 
 
