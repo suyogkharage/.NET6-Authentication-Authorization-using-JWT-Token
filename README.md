@@ -1,4 +1,3 @@
-# JWTWebAPI
 
 This application demonstrates use of JWT token for Registration, Login and Authentication purpose.
 
