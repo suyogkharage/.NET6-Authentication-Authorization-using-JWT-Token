@@ -16,12 +16,12 @@ AuthController.cs
 	
 If you add Authorize parameter above an ActionMethod, swagger will give you 500 error mentioning "No authenticationScheme was specified, and there was no DefaultChallengeScheme found"	
 
-To avoid this, provided options for AddAuthentication method and use "UseAuthentication" middleware in Program.cs
+To avoid this, provide options for AddAuthentication method and use "UseAuthentication" middleware in Program.cs
 Note - app.UseAuthentication() call should be placed before app.UseAuthorization();
 
-Now we will get response as 401 on swagger since we have not sent token along with HTTPS request header
+Now you will get response as 401 on swagger since token is not being sent along with HTTPS request header
 
-later, added options for AddSwaggerGen() method in Program.cs and Authorize button started displaying on top of swagger page.
+later, add options for AddSwaggerGen() method in Program.cs and then Authorize button will start displaying on top of swagger page.
 Get token from login method and add it inside "Authorize" button (bearer<space><token_value>)
 
 After authorizing it, endpoint will start giving actual response in swagger	
@@ -30,7 +30,7 @@ After authorizing it, endpoint will start giving actual response in swagger
 Roles =>
 
 After adding Authorize(Roles ="Admin") above an action method, 
-swagger will give 403 (forbidden) error since we have not added Role in claims.
+swagger will give 403 (forbidden) error since Role is not added in claim list.
 
 Now add new claim inside CreateToken method with Admin role and by generating new token again,
 endpoint will give you correct response.
