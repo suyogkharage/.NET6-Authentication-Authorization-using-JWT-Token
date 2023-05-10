@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JWTWebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -19,8 +19,8 @@ namespace JWTWebAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast"), Authorize(Roles ="Admin")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("GetWeatherForecast"), Authorize(Roles ="Admin")]
+        public IEnumerable<WeatherForecast> GetWeatherForecast()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
