@@ -33,3 +33,21 @@ swagger will give 403 (forbidden) error since Role is not added in claim list.
 
 Now add new claim inside CreateToken method with Admin role and by generating new token again,
 endpoint will give you correct response.
+
+====================================================================================
+
+Read claims from Controller ->
+
+To read claim deatils like user name, role etc.
+- extract user name from inbuilt User object of HttpContext class like below:
+	User?.Identity?.Name; OR User.FindFirstValue(ClaimTypes.Name)
+
+But above approach is not recommended and it should be in separate service.
+- To get claim details from service, add AddHttpContextAccessor in builder services in Program.cs
+- inject IHttpContextAccessor in new service and extract user name like
+	httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+- inject new service inside controller method and extract the result.	
+
+NOTE - Authorize attribute is required above controller method or class to get claim details
+
+====================================================================================
