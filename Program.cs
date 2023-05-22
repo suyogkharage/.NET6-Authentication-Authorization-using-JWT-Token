@@ -36,6 +36,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// added CORS 
+builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
+    policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+    }));
+
+
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserServices, UserServices>();
 var app = builder.Build();
@@ -46,6 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+// CORS
+app.UseCors("Ngorigins");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
